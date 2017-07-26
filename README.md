@@ -3,15 +3,15 @@ By: Laura Mejía Vásquez - lmejiav6@eafit.edu.co
 
 # 1. Descripción de aplicación
 
-*Sistema que permite la gestión de videos.
-*El acceso para la visualización del contenido será necesario tener una cuenta por parte de los usuarios.
-*Estos usuarios están en la capacidad de crear, actualizar y eliminar su cuenta.
-*Una vez ingresen a la plataforma pueden subir archivos de video decidiendo si el contenido será público (disponible
-*para todos), o privado (unicamente disponbile para el autor del contenido). Existe la opción de cambiar el estado
-*del video de público a privado y viceversa. Cuando se agrega un nuevo video se pondrán obtener los metadatos del mismo.
-*Existen 2 tipos de navegación: la primera es una general en la cual se observará el contenido público subido por todos
-*los usuarios registrados, y la segunda una búsqueda mediante la cual se filtrá el contenido por usuario.
-*Cuando el usuario haya finalizado su navegación, podrá finalizar su sesión.
+* Sistema que permite la gestión de videos.
+* El acceso para la visualización del contenido será necesario tener una cuenta por parte de los usuarios.
+* Estos usuarios están en la capacidad de crear, actualizar y eliminar su cuenta.
+* Una vez ingresen a la plataforma pueden subir archivos de video decidiendo si el contenido será público (disponible
+para todos), o privado (unicamente disponbile para el autor del contenido). Existe la opción de cambiar el estado
+del video de público a privado y viceversa. Cuando se agrega un nuevo video se pondrán obtener los metadatos del mismo.
+* Existen 2 tipos de navegación: la primera es una general en la cual se observará el contenido público subido por todos
+los usuarios registrados, y la segunda una búsqueda mediante la cual se filtrá el contenido por usuario.
+* Cuando el usuario haya finalizado su navegación, podrá finalizar su sesión.
 
 # 2. Análisis
 
