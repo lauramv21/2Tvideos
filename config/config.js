@@ -6,28 +6,28 @@ var config = {
   development: {
     root: rootPath,
     app: {
-      name: '2tvideos'
+      name: '2Tvideos'
     },
     port: process.env.PORT || 3001,
-    db: 'mongodb://localhost/2tvideos-development'
+    db: 'mongodb://localhost/2Tvideos_Desarrollo'
   },
 
   test: {
     root: rootPath,
     app: {
-      name: '2tvideos'
+      name: '2Tvideos'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/2tvideos-test'
+    db: 'mongodb://localhost/2Tvideos_test'
   },
 
   production: {
     root: rootPath,
     app: {
-      name: '2tvideos'
+      name: '2Tvideos'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/2tvideos-production'
+    db: 'mongodb://localhost/2Tvideos_Funcionamiento'
   }
 };
 
