@@ -11,14 +11,6 @@ var express = require('express'),
   multer = require('multer'),
   cloudinary = require('cloudinary'),
   session = require('express-session');
-/*
-//home=pagina principal
-var home = require('./app/controllers/home');
-//usuarios
-var users = require('./app/controllers/users');
-//archivos de video
-var files = require('./app/controllers/files');
-*/
 
 //destino de videos subidos
 var upload = multer({dest :'./videos'});
@@ -89,9 +81,3 @@ app.use(function (req, res, next) {
   res.locals.user = req.user || null;
   next();
 });
-
-/*
-app.use('/', home);
-app.use('/users', users);
-app.use('/files', files);
-*/
