@@ -8,10 +8,15 @@ var express = require('express'),
   expressValidator = require('express-validator'),
   LocalStrategy = require('passport-local').Strategy,
   bodyParser = require('body-parser'),
+  cookieParser = require('cookie-parser'),
   session = require('express-session');
 
 
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 //autogenerado. Conexión con la base de datos
 mongoose.connect(config.db);
@@ -24,13 +29,6 @@ var models = glob.sync(config.root + '/app/models/*.js');
 models.forEach(function (model) {
   require(model);
 });
-
-module.exports = require('./config/express')(app, config);
-
-app.listen(config.port, function () {
-  console.log('Express server listening on port ' + config.port);
-});
-
 
 app.use(session({
 	secret: 'secret',
@@ -69,4 +67,11 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
   next();
+});
+
+
+module.exports = require('./config/express')(app, config);
+
+app.listen(config.port, function () {
+  console.log('Express server listening on port ' + config.port);
 });

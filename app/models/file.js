@@ -3,9 +3,11 @@ var mongoose = require('mongoose'),
 
 //estructura subir achivos
 var FileSchema = new Schema({
-	name:String,
+  username:String,
+	title:String,
+  description:String,
   video:String,
-	privateFile: Boolean
+	privateFile: String
 });
 
 var File = mongoose.model('File', FileSchema);

@@ -1,5 +1,4 @@
 <body>
-
 <div class="container">
     <div class="info">
         <h1>Publicar video</h1>
@@ -7,15 +6,12 @@
 </div>
 <form method="post" action="publicando" enctype="multipart/form-data">
     <div class="form">
-        <input type="text" name="author" placeholder="Nombre de usuario"/>
-        <input type="file" name="video"/>
+        <input type="file" class="form-control" name="video"/>
+        <input type="text" class="form-control" name="title" placeholder="Titulo"/>
+        <input type="text" class="form-control" name="description" placeholder="Descripcion"/>
         <label> <input type="checkbox" name="privateFile"/> Privado </label>
         <button>Subir</button>
     </div>
 </form>
-
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-<script src="js/index.js"></script>-->
 
 </body>

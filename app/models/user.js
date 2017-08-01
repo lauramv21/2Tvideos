@@ -5,29 +5,34 @@ var bcrypt = require('bcryptjs');
 //estructura registro de usuarios
 var UserSchema = new Schema({
 	name: String,
-	last_name: String,
+	lastname: String,
 	username:String,
 	password: String
 });
 
-var User = mongoose.model('User', UserSchema);
+var User = module.exports = mongoose.model('User', UserSchema);
 
-//Agregar nuevo usuario
 module.exports.createUser = function(newUser, callback){
-	//from byscrypjs
-	bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(newUser.password, salt, function(err, hash) {
-	        newUser.password = hash;
-	        newUser.save(callback);
-	    });
-	});
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(newUser.password, salt, function(err, hash) {
+      newUser.password = hash;
+      newUser.save(callback);
+    });
+  });
 }
 
+module.exports.getUserByUsername = function(username, callback){
+  var query = {username: username};
+  User.findOne(query, callback);
+}
 
-//confimar contraseña
+module.exports.getUserById = function(id, callback){
+  User.findById(id, callback);
+}
+
 module.exports.comparePassword = function(candidatePassword, hash, callback){
-	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-    	if(err) throw err;
-    	callback(null, isMatch);
-	});
+  bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+    if(err) throw err;
+    callback(null, isMatch);
+  });
 }

@@ -30,7 +30,9 @@ router.post("/publicando", upload.single('video'), function(req,res){
   }
 
   var video = {
-    username:req.body.username,
+    username:req.user.username,
+    title:req.body.title,
+    description:req.body.description,
     video:req.body.video,
     privateFile:private
   }
@@ -42,12 +44,13 @@ router.post("/publicando", upload.single('video'), function(req,res){
       archivo.video = result.url;
       archivo.save(function(err){
         console.log(archivo);
-        res.render("login");
+        res.render("display");
       });
     },
-    { resource_type: "video"}
+    {resource_type: "video"}
   );
 });
+
 
 router.get("/videos", function(solicitud, respuesta){
   File.find(function(err, documento){
@@ -57,3 +60,33 @@ router.get("/videos", function(solicitud, respuesta){
 });
 
 
+router.get('/misvideos', function(req, res){
+  File.find({username:req.user.username}, function(err, documento){
+    if(err){console.log(err);}
+    console.log(documento);
+    res.render('profile', {videos:documento});
+  });
+});
+
+
+router.get('/editar/:id', function(req, res) {
+  var id_video = req.params.id;
+  File.findOne({"_id": id_video}, function (err, video) {
+    res.render('edit', {video: video});
+  });
+});
+
+router.post('/edit/:id', function(req, res){
+  var privado = false;
+  if(req.body.privateFile == 'on'){
+    privado = true;
+  }
+  var videoData = {
+    title: req.body.title,
+    description: req.body.description,
+    privateFile : privado
+  };
+  File.update({"_id":req.params.id}, videoData, function(){
+    res.redirect("/misvideos")
+  });
+});
