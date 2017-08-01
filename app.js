@@ -8,19 +8,8 @@ var express = require('express'),
   expressValidator = require('express-validator'),
   LocalStrategy = require('passport-local').Strategy,
   bodyParser = require('body-parser'),
-  multer = require('multer'),
-  cloudinary = require('cloudinary'),
   session = require('express-session');
 
-//destino de videos subidos
-var upload = multer({dest :'./videos'});
-
-//conexión con Cloudinary
-cloudinary.config({
-	cloud_name: "lauramv21",
-	api_key: "127686626259722",
-	api_secret: "_LPx0JveMPU6ssLdjNyZuSWxSDg"
-});
 
 var app = express();
 

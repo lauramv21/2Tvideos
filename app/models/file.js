@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 //estructura subir achivos
 var FileSchema = new Schema({
 	name:String,
+  video:String,
 	privateFile: Boolean
 });
 

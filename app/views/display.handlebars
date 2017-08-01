@@ -1,0 +1,39 @@
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="header">Pagina principal
+            </h1>
+        </div>
+    </div>
+
+    <form method="post" action="/buscar">
+        <div class="form-group">
+            <label>Buscar</label>
+            <input type="text" class="form-control" name="buscar" placeholder="Busqueda por usuario">
+        </div>
+        <button type="submit" class="btn btn-default">Entrar</button>
+    </form>
+
+    <hr>
+
+  {{#each videos}}
+      <div class="row">
+          <div class="col-md-7">
+              <video width="320" height="240" controls>
+                  <source src="{{this.video}}" type="video/mp4"/>
+              </video>
+          </div>
+          <div class="col-md-5">
+              <h3>titulo del video</h3>
+              <h4>{{this.username}}</h4>
+              <p>Este es un superhipermegafabuloso video</p>
+          </div>
+      </div>
+      <!-- /.row -->
+
+      <hr>
+  {{/each}}
+</div>
+
