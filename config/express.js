@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
 var exphbs  = require('express-handlebars');
-
+var Handlebars = require('handlebars');
 
 
 module.exports = function(app, config) {
@@ -21,6 +21,13 @@ module.exports = function(app, config) {
     defaultLayout: 'main',
     partialsDir: [config.root + '/app/views/partials/']
   }));
+
+  Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+    if(v1 === v2) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
 
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'handlebars');

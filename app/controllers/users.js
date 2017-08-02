@@ -95,7 +95,7 @@ router.post('/ingresando',
     res.redirect('/videos');
   });
 
-router.get('/logout', function(req, res){
+router.get('/salir', function(req, res){
   req.logout();
 
   req.flash('success_msg', 'Desconectado exitosamente');
