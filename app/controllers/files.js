@@ -19,7 +19,7 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
-router.get('/publicar', function(req, res){
+router.get('/publicar', ensureAuthenticated, function(req, res){
   res.render('upload');
 });
 
@@ -52,7 +52,7 @@ router.post("/publicando", upload.single('video'), function(req,res){
 });
 
 
-router.get("/videos", function(req, res){
+router.get("/videos",ensureAuthenticated,function(req, res){
   File.find({privateFile:"false"},function(err, documento){
     if(err){console.log(err);}
     res.render("display",{ videos : documento})
@@ -60,7 +60,7 @@ router.get("/videos", function(req, res){
 });
 
 
-router.get('/misvideos', function(req, res){
+router.get('/misvideos', ensureAuthenticated, function(req, res){
   File.find({username:req.user.username}, function(err, documento){
     if(err){console.log(err);}
     console.log(documento);
@@ -69,7 +69,7 @@ router.get('/misvideos', function(req, res){
 });
 
 
-router.get('/editar/:id', function(req, res) {
+router.get('/editar/:id', ensureAuthenticated, function(req, res) {
   var id_video = req.params.id;
   File.findOne({"_id": id_video}, function (err, video) {
     res.render('edit', {video:video});
@@ -101,3 +101,12 @@ router.post('/buscar', function(req, res) {
     res.render('display', {username: req.user.username, videos: documento});
   });
 });
+
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    //req.flash('error_msg','You are not logged in');
+    res.redirect('/ingresar');
+  }
+}
