@@ -5,7 +5,8 @@ var express = require('express'),
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   bcrypt = require('bcryptjs'),
-  File = mongoose.model('File');
+  File = mongoose.model('File'),
+  cloudinary = require('cloudinary');
 
 
 module.exports = function (app) {
@@ -179,6 +180,7 @@ router.post('/eliminarCuenta', function (req, res) {
     });
     res.redirect("/")
   });
+
 });
 
 function ensureAuthenticated(req, res, next){
