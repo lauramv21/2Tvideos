@@ -13,13 +13,28 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
+/* Servicio Web: Entrada al formato de Registro de usuarios.
+ Método: GET
+ URI: /registro
+ */
+
 router.get('/registro', function(req, res){
   res.render("register");
 });
 
+/* Servicio Web: Entrada al formato de Inicio de sesión.
+ Método: GET
+ URI: /ingresar
+ */
+
 router.get('/ingresar', function(req, res){
   res.render("login");
 });
+
+/* Servicio Web: Inserta un Nuevo Usuario en la Base de datos
+ Método: POST
+ URI: /registrando
+ */
 
 router.post('/registrando', function(req, res){
   var name = req.body.name;
@@ -93,11 +108,21 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+/* Servicio Web: Realiza la autenticación del usuario para ingresar.
+ Método: POST
+ URI: /ingresando
+ */
+
 router.post('/ingresando',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/ingresar',failureFlash: true}),
   function(req, res) {
     res.redirect('/videos');
   });
+
+/* Servicio Web: Finaliza la sesión actual y redirige al formato de Inicio de sesión.
+ Método: GET
+ URI: /salir
+ */
 
 router.get('/salir', ensureAuthenticated, function(req, res){
   req.logout();
@@ -108,6 +133,10 @@ router.get('/salir', ensureAuthenticated, function(req, res){
 });
 
 
+/* Servicio Web: Busca y muestra los datos del usuario en la Base de datos.
+ Método: GET
+ URI: /cuenta
+ */
 router.get('/cuenta', ensureAuthenticated, function (req, res) {
   User.getUserByUsername(req.user.username, function(err, user) {
     res.render('account', {usuario:user});
@@ -157,6 +186,10 @@ router.post('/cambiarClave', function(req, res) {
   });
 });
 
+/* Servicio Web: Modifica los datos del usuario en la Base de datos.
+ Método: POST
+ URI: /actualizarDatos
+ */
 
 router.post('/actualizarDatos', function (req, res) {
   var userData = {
@@ -169,6 +202,12 @@ router.post('/actualizarDatos', function (req, res) {
     res.redirect('/cuenta');
   });
 });
+
+/* Servicio Web: Elimina el usuario y sus archivos de la Base de datos.
+ Método: POST
+ URI: /eliminarCuenta
+ */
+
 
 router.post('/eliminarCuenta', function (req, res) {
   var userId = req.user._id;

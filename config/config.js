@@ -17,7 +17,7 @@ var config = {
     app: {
       name: '2Tvideos'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     db: 'mongodb://localhost/2Tvideos_test'
   },
 
@@ -26,7 +26,7 @@ var config = {
     app: {
       name: '2Tvideos'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     db: 'mongodb://lauramv21:laura.21@ds135963.mlab.com:35963/2tvideos'
   }
 };

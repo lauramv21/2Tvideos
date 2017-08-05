@@ -19,10 +19,19 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
+/* Servicio Web: Entrada al formato de subir un archivo.
+ Método: GET
+ URI: /publicar
+ */
+
 router.get('/publicar', ensureAuthenticated, function(req, res){
   res.render('upload');
 });
 
+/* Servicio Web: Almacena en la base de datos la referencia al video junto con sus atributos.
+ Método: POST
+ URI: /publicando
+ */
 router.post("/publicando", upload.single('video'), function(req,res){
   var private = false;
   if(req.body.privateFile == 'on'){
@@ -51,6 +60,11 @@ router.post("/publicando", upload.single('video'), function(req,res){
   );
 });
 
+/* Servicio Web: Busca y muestra todos los videos en estado publico subidos por los usuarios
+ en la Base de datos.
+ Método: GET
+ URI: /videos
+ */
 
 router.get("/videos",ensureAuthenticated,function(req, res){
   File.find({privateFile:"false"},function(err, documento){
@@ -59,6 +73,10 @@ router.get("/videos",ensureAuthenticated,function(req, res){
   });
 });
 
+/* Servicio Web: Despliega la lista de archivos subidos por el usuario en la sesión actual.
+ Método: GET
+ URI: /misvideos
+ */
 
 router.get('/misvideos', ensureAuthenticated, function(req, res){
   File.find({username:req.user.username}, function(err, documento){
@@ -68,6 +86,10 @@ router.get('/misvideos', ensureAuthenticated, function(req, res){
   });
 });
 
+/* Servicio Web: Entrada al formato de actualización de los datos de la publicación.
+ Método: GET
+ URI: /editar/:id
+ */
 
 router.get('/editar/:id', ensureAuthenticated, function(req, res) {
   var id_video = req.params.id;
@@ -92,6 +114,10 @@ router.post('/editar/:id', function(req, res){
   });
 });
 
+/* Servicio Web: Filtra los videos públicos por usuario y los muestra.
+ Método: POST
+ URI: /buscar
+ */
 
 router.post('/buscar', function(req, res) {
   File.find({username: req.body.buscar, privateFile: "false"}, function (err, documento) {
