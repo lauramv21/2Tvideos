@@ -139,13 +139,13 @@ ver pág: https://www.liquidweb.com/kb/how-to-install-mongodb-on-centos-7/
      */
 
     /* Servicio Web: Inserta un Nuevo Usuario en la Base de datos
-      Método: POST
-      URI: /registrando
+          Método: POST
+          URI: /registrando
     */
 
     /* Servicio Web: Realiza la autenticación del usuario para ingresar.
-      Método: POST
-      URI: /ingresando
+          Método: POST
+          URI: /ingresando
     */
 
      /* Servicio Web: Almacena en la base de datos la referencia al video junto con sus atributos.
@@ -154,18 +154,18 @@ ver pág: https://www.liquidweb.com/kb/how-to-install-mongodb-on-centos-7/
      */
 
     /* Servicio Web: Modifica la contraseña en la Base de datos.
-      Método: POST
-      URI: /cambiarClave
+          Método: POST
+          URI: /cambiarClave
     */
 
     /* Servicio Web: Modifica los datos del usuario en la Base de datos.
-      Método: POST
-      URI: /actualizarDatos
+          Método: POST
+          URI: /actualizarDatos
     */
 
     /* Servicio Web: Elimina el usuario y sus archivos de la Base de datos.
-      Método: POST
-      URI: /eliminarCuenta
+          Método: POST
+          URI: /eliminarCuenta
     */
 
      /* Servicio Web: Filtra los videos públicos por usuario y los muestra.
@@ -182,14 +182,14 @@ ver pág: https://www.liquidweb.com/kb/how-to-install-mongodb-on-centos-7/
 
 se instala un manejador de procesos de nodejs, se instala: PM2 (http://pm2.keymetrics.io/)
 
-    emontoya$ npm install -g pm2
-    emontoya$ cd articulosEM
-    emontoya$ pm2 start app.ps
-    emontoya$ pm2 list
+    lmejia$ npm install -g pm2
+    lmejia$ cd articulosEM
+    lmejia$ pm2 start app.ps
+    lmejia$ pm2 list
 
 ponerlo como un servicio, para cuando baje y suba el sistema:
 
-    emontoya$ pm2 startup systemd
+    lmejia$ pm2 startup systemd
 
 abrir los puertos en el firewall que utilizara la app:
 
