@@ -1,5 +1,5 @@
 var express = require('express'),
-  config = require("./config/config"),
+  config = require('./config/config'),
   router = express.Router();
 
 module.exports = function (app) {
