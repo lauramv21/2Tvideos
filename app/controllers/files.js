@@ -3,9 +3,8 @@ var express = require('express'),
   multer = require('multer'),
   cloudinary = require('cloudinary'),
   mongoose = require('mongoose'),
-  config = require("./config/config"),
   File = mongoose.model('File');
-
+var config = require("./config/config");
 //destino de videos subidos
 var upload = multer({dest :'./videos'});
 

@@ -1,6 +1,6 @@
 var express = require('express'),
-  config = require("./config/config"),
   router = express.Router();
+var config = require("./config/config")
 
 module.exports = function (app) {
   app.use('/', router);

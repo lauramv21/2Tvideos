@@ -6,8 +6,8 @@ var express = require('express'),
   LocalStrategy = require('passport-local').Strategy,
   bcrypt = require('bcryptjs'),
   File = mongoose.model('File'),
-  config = require("./config/config"),
   cloudinary = require('cloudinary');
+var config = require("./config/config");
 
 
 module.exports = function (app) {
