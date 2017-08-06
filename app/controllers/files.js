@@ -25,7 +25,7 @@ module.exports = function (app) {
  */
 
 router.get('/publicar', ensureAuthenticated, function(req, res){
-  res.render('upload');
+  res.render('upload', {baseUrl: config.baseUrl});
 });
 
 /* Servicio Web: Almacena en la base de datos la referencia al video junto con sus atributos.
@@ -53,7 +53,7 @@ router.post("/publicando", upload.single('video'), function(req,res){
       archivo.video = result.url;
       archivo.save(function(err){
         console.log(archivo);
-        res.render("display");
+        res.render("display", {baseUrl: config.baseUrl});
       });
     },
     {resource_type: "video"}
@@ -69,7 +69,7 @@ router.post("/publicando", upload.single('video'), function(req,res){
 router.get("/videos",ensureAuthenticated,function(req, res){
   File.find({privateFile:"false"},function(err, documento){
     if(err){console.log(err);}
-    res.render("display",{ videos : documento})
+    res.render("display",{ videos : documento}, {baseUrl: config.baseUrl})
   });
 });
 
@@ -82,7 +82,7 @@ router.get('/misvideos', ensureAuthenticated, function(req, res){
   File.find({username:req.user.username}, function(err, documento){
     if(err){console.log(err);}
     console.log(documento);
-    res.render('profile', {videos:documento});
+    res.render('profile', {videos:documento}, {baseUrl: config.baseUrl});
   });
 });
 
@@ -94,7 +94,7 @@ router.get('/misvideos', ensureAuthenticated, function(req, res){
 router.get('/editar/:id', ensureAuthenticated, function(req, res) {
   var id_video = req.params.id;
   File.findOne({"_id": id_video}, function (err, video) {
-    res.render('edit', {video:video});
+    res.render('edit', {video:video}, {baseUrl: config.baseUrl});
   });
 });
 
@@ -110,7 +110,7 @@ router.post('/editar/:id', function(req, res){
   };
   console.log(videoData);
   File.update({"_id":req.params.id}, videoData, function(){
-    res.redirect("/misvideos")
+    res.redirect("/misvideos", {baseUrl: config.baseUrl})
   });
 });
 
@@ -124,7 +124,7 @@ router.post('/buscar', function(req, res) {
     if (err) {
       console.log(err);
     }
-    res.render('display', {username: req.user.username, videos: documento});
+    res.render('display', {username: req.user.username, videos: documento}, {baseUrl: config.baseUrl});
   });
 });
 
@@ -133,6 +133,6 @@ function ensureAuthenticated(req, res, next){
     return next();
   } else {
     //req.flash('error_msg','You are not logged in');
-    res.redirect('/ingresar');
+    res.redirect('/ingresar', {baseUrl: config.baseUrl});
   }
 }

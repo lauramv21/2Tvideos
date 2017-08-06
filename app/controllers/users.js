@@ -19,7 +19,7 @@ module.exports = function (app) {
  */
 
 router.get('/registro', function(req, res){
-  res.render("register");
+  res.render("register", {baseUrl: config.baseUrl});
 });
 
 /* Servicio Web: Entrada al formato de Inicio de sesión.
@@ -28,7 +28,7 @@ router.get('/registro', function(req, res){
  */
 
 router.get('/ingresar', function(req, res){
-  res.render("login");
+  res.render("login", {baseUrl: config.baseUrl});
 });
 
 /* Servicio Web: Inserta un Nuevo Usuario en la Base de datos
@@ -57,9 +57,7 @@ router.post('/registrando', function(req, res){
   var errors = req.validationErrors();
 
   if(errors){
-    res.render('register',{
-      errors:errors
-    });
+    res.render('register',{errors:errors}, {baseUrl: config.baseUrl});
   }else{
     var nuevoUsuario = new User({
       name: name,
@@ -74,7 +72,7 @@ router.post('/registrando', function(req, res){
 
     req.flash('success_msg', 'Usted ha sido registrado');
 
-    res.redirect('ingresar');
+    res.redirect('ingresar', {baseUrl: config.baseUrl});
   }
 });
 
@@ -116,7 +114,7 @@ passport.deserializeUser(function(id, done) {
 router.post('/ingresando',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/ingresar',failureFlash: true}),
   function(req, res) {
-    res.redirect('/videos');
+    res.redirect('/videos', {baseUrl: config.baseUrl});
   });
 
 /* Servicio Web: Finaliza la sesión actual y redirige al formato de Inicio de sesión.
@@ -129,7 +127,7 @@ router.get('/salir', ensureAuthenticated, function(req, res){
 
   req.flash('success_msg', 'Desconectado exitosamente');
 
-  res.redirect('/ingresar');
+  res.redirect('/ingresar', {baseUrl: config.baseUrl});
 });
 
 
@@ -139,7 +137,7 @@ router.get('/salir', ensureAuthenticated, function(req, res){
  */
 router.get('/cuenta', ensureAuthenticated, function (req, res) {
   User.getUserByUsername(req.user.username, function(err, user) {
-    res.render('account', {usuario:user});
+    res.render('account', {usuario:user}, {baseUrl: config.baseUrl});
   });
 });
 
@@ -161,7 +159,7 @@ router.post('/cambiarClave', function(req, res) {
         console.log(isMatch);
         if (!coinciden) {
           req.flash('error_msg','las contraseñas nuevas no coinciden entre si');
-          res.redirect('/cuenta')
+          res.redirect('/cuenta', {baseUrl: config.baseUrl})
         }else{
           bcrypt.genSalt(10, function (err, salt) {
             bcrypt.hash(nuevaClave, salt, function (err, hash) {
@@ -173,14 +171,14 @@ router.post('/cambiarClave', function(req, res) {
               };
               User.update({"username": usuario}, claveData , function () {
                 req.flash('success_msg', 'Contraseña cambiada exitosamente');
-                res.redirect("/cuenta")
+                res.redirect("/cuenta", {baseUrl: config.baseUrl})
               });
             });
           });
         }
       }else{
         req.flash('error_msg', 'La "contraseña anterior" ingresada es incorrecta');
-        res.redirect('/cuenta')
+        res.redirect('/cuenta', {baseUrl: config.baseUrl})
       }
     });
   });
@@ -199,7 +197,7 @@ router.post('/actualizarDatos', function (req, res) {
   var userId = req.user._id;
   console.log(userId);
   User.update({"_id":userId}, userData, function () {
-    res.redirect('/cuenta');
+    res.redirect('/cuenta', {baseUrl: config.baseUrl});
   });
 });
 
@@ -217,7 +215,7 @@ router.post('/eliminarCuenta', function (req, res) {
     File.remove({"username":userName},function (err) {
       if (err){console.log(err);}
     });
-    res.redirect("/")
+    res.redirect("/", {baseUrl: config.baseUrl})
   });
 
 });
@@ -227,6 +225,6 @@ function ensureAuthenticated(req, res, next){
     return next();
   } else {
     //req.flash('error_msg','You are not logged in');
-    res.redirect('/ingresar');
+    res.redirect('/ingresar', {baseUrl: config.baseUrl});
   }
 }

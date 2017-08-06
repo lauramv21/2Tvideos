@@ -13,6 +13,7 @@ var config = {
   },
 
   test: {
+    baseUrl: "/2tvideos/",
     root: rootPath,
     app: {
       name: '2Tvideos'
@@ -22,6 +23,7 @@ var config = {
   },
 
   production: {
+    baseUrl: "/2tvideos/",
     root: rootPath,
     app: {
       name: '2Tvideos'

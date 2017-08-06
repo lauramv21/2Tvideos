@@ -1,5 +1,5 @@
 <h2 class="page-header">Editar publicación</h2>
-<form method="post" action="/editar/{{video.id}}">
+<form method="post" action="{{baseUrl}}/editar/{{video.id}}">
     <div class="form-group">
         <label>Título</label>
         <input type="text" class="form-control" name="titulo" value="{{video.title}}">
@@ -18,7 +18,7 @@
     <button type="submit" class="btn btn-info">Actualizar</button>
 </form>
 <h2 class="page-header">Eliminar imagen</h2>
-<form method="post" action="/delete/{{video.id}}?_method=delete">
+<form method="post" action="{{baseUrl}}/delete/{{video.id}}?_method=delete">
     <button type="submit" class="btn btn-danger">Eliminar publicacion</button>
 </form>
 

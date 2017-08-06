@@ -36,44 +36,25 @@ los usuarios registrados, y la segunda una búsqueda mediante la cual se filtrá
 * Web Server: NGINX
 
 
-
-## Ambiente de Desarrollo, Pruebas y Producción:
-
-## Desarrollo:
-
-## Pruebas
+# 3. Pruebas
 
 en el DCA:
 
-1. se instala nvm local para el usuario
+1. Se instaló nvm local para lmejia
 
 source: https://www.liquidweb.com/kb/how-to-install-nvm-node-version-manager-for-node-js-on-centos-7/
 
-2. se instala la version de node:
+2. Se instaló la version de node:
 
-    $ nvm install v7.7.4
+    $ nvm install v6.11.1
 
-3. se instala el servidor mongodb
-
-como root:
+3. Se instala el servidor mongodb como root:
 
     # yum install mongodb-server -y
 
-ponerlo a correr:
+# 4. Diseño:
 
-    # systemctl enable mongod
-    # systemctl start mongod
-
-
-lo instala de los repositorios propios de Centos.
-
-tambien lo puede instalar de un repo de mongodb:
-
-ver pág: https://www.liquidweb.com/kb/how-to-install-mongodb-on-centos-7/
-
-# 3. Diseño:
-
-## 3.1 Modelo de datos:
+## 4.1 Modelo de datos:
 
     File:
 
@@ -94,7 +75,7 @@ ver pág: https://www.liquidweb.com/kb/how-to-install-mongodb-on-centos-7/
         password: String
     }
 
-## 3.2 Servicios Web
+## 4.2 Servicios Web
 
 
      /* Servicio Web: Entrada al formato de Registro de usuarios.
@@ -172,51 +153,43 @@ ver pág: https://www.liquidweb.com/kb/how-to-install-mongodb-on-centos-7/
           Método: POST
           URI: /buscar
      */
-
-
-# 4. Desarrollo:
+¡
 
 # 5. Implementación o Despliegue (DCA y PaaS):
 
-5.1 despliegue en el data center academico (DCA):
+##5.1 despliegue en el data center academico (DCA):
 
-se instala un manejador de procesos de nodejs, se instala: PM2 (http://pm2.keymetrics.io/)
+1. Se instaló un manejador de procesos de nodejs, PM2 (http://pm2.keymetrics.io/)
 
     lmejia$ npm install -g pm2
     lmejia$ cd articulosEM
     lmejia$ pm2 start app.ps
     lmejia$ pm2 list
 
-ponerlo como un servicio, para cuando baje y suba el sistema:
+2. Se pone como un servicio, para cuando se reinicie el sistema:
 
     lmejia$ pm2 startup systemd
 
-abrir los puertos en el firewall que utilizara la app:
+3. Se abren los puertos en el firewall que utilizará la app:
 
     # firewall-cmd --zone=public --add-port=3000/tcp --permanent
     # firewall-cmd --reload
     # firewall-cmd --list-all
 
-como medida desesperada, puede parar y desactivar el firewalld, cosa que no es recomendable:
 
-    # systemctl stop firewalld
-    # systemctl disable firewalld
-    # systemctl start firewalld
-
-
-Instalar NGINX:
+4. Se instaló NGINX:
 
     # yum install -y nginx
 
     # systemctl enable nginx
     # systemctl start nginx
 
-Abrir el puerto 80
+5. Se abre el puerto 80
 
     # firewall-cmd --zone=public --add-port=80/tcp --permanent
     # firewall-cmd --reload
 
-MUY MUY IMPORTANTE: Deshabilitar SELINUX
+6. se deshabilitó SELINUX
 
     # vim /etc/sysconfig/selinux
 
