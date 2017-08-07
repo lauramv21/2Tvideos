@@ -7,7 +7,7 @@ var express = require('express'),
   bcrypt = require('bcryptjs'),
   File = mongoose.model('File'),
   cloudinary = require('cloudinary');
-var config = require("./config/config");
+var config = require("../../config/config");
 
 
 module.exports = function (app) {

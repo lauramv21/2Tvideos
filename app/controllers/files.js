@@ -4,7 +4,7 @@ var express = require('express'),
   cloudinary = require('cloudinary'),
   mongoose = require('mongoose'),
   File = mongoose.model('File');
-var config = require("./config/config");
+var config = require("../../config/config");
 //destino de videos subidos
 var upload = multer({dest :'./videos'});
 
