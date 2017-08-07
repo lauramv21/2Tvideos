@@ -16,21 +16,39 @@ module.exports = function(app, config) {
   app.locals.ENV_DEVELOPMENT = env == 'development';
 
 
+
+
+  var hbs = exphbs.create({
+    helpers:{
+      ifCond: function(v1, v2, options) {
+        if(v1 === v2) {
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      }
+    },
+    layoutsDir: config.root + '/app/views/layouts/',
+    defaultLayout: 'main'
+  });
+
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'handlebars');
 
+  app.engine('handlebars', hbs.engine);
+
+ /*
   app.engine('handlebars', exphbs({
-    layoutsDir: config.root + '/app/views/layouts/',
-    defaultLayout: 'main'
+  layoutsDir: config.root + '/app/views/layouts/',
+  defaultLayout: 'main'
   }));
 
-  Handlebars.
-  Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+ Handlebars.registerHelper('ifCond', function(v1, v2, options) {
     if(v1 === v2) {
       return options.fn(this);
     }
     return options.inverse(this);
   });
+  */
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
