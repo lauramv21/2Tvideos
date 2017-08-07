@@ -19,7 +19,7 @@ module.exports = function (app) {
  URI: /registro
  */
 
-router.get('registro', function(req, res){
+router.get('/registro', function(req, res){
   res.render("register", {baseUrl: config.baseUrl});
 });
 
@@ -28,7 +28,7 @@ router.get('registro', function(req, res){
  URI: /ingresar
  */
 
-router.get('ingresar', function(req, res){
+router.get('/ingresar', function(req, res){
   res.render("login", {baseUrl: config.baseUrl});
 });
 
@@ -115,7 +115,7 @@ passport.deserializeUser(function(id, done) {
 router.post('ingresando',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/ingresar',failureFlash: true}),
   function(req, res) {
-    res.redirect('videos', {baseUrl: config.baseUrl});
+    res.redirect('/videos', {baseUrl: config.baseUrl});
   });
 
 /* Servicio Web: Finaliza la sesión actual y redirige al formato de Inicio de sesión.
@@ -123,12 +123,12 @@ router.post('ingresando',
  URI: /salir
  */
 
-router.get('salir', ensureAuthenticated, function(req, res){
+router.get('/salir', ensureAuthenticated, function(req, res){
   req.logout();
 
   req.flash('success_msg', 'Desconectado exitosamente');
 
-  res.redirect('ingresar', {baseUrl: config.baseUrl});
+  res.redirect('/ingresar', {baseUrl: config.baseUrl});
 });
 
 
@@ -136,13 +136,13 @@ router.get('salir', ensureAuthenticated, function(req, res){
  Método: GET
  URI: /cuenta
  */
-router.get('cuenta', ensureAuthenticated, function (req, res) {
+router.get('/cuenta', ensureAuthenticated, function (req, res) {
   User.getUserByUsername(req.user.username, function(err, user) {
     res.render('account', {usuario:user}, {baseUrl: config.baseUrl});
   });
 });
 
-router.post('cambiarClave', function(req, res) {
+router.post('/cambiarClave', function(req, res) {
   var usuario = req.user.username;
   var clave = req.body.oldpassword;
   var nuevaClave = req.body.newpassword;
@@ -172,14 +172,14 @@ router.post('cambiarClave', function(req, res) {
               };
               User.update({"username": usuario}, claveData , function () {
                 req.flash('success_msg', 'Contraseña cambiada exitosamente');
-                res.redirect("cuenta", {baseUrl: config.baseUrl})
+                res.redirect("/cuenta", {baseUrl: config.baseUrl})
               });
             });
           });
         }
       }else{
         req.flash('error_msg', 'La "contraseña anterior" ingresada es incorrecta');
-        res.redirect('cuenta', {baseUrl: config.baseUrl})
+        res.redirect('/cuenta', {baseUrl: config.baseUrl})
       }
     });
   });
@@ -198,7 +198,7 @@ router.post('actualizarDatos', function (req, res) {
   var userId = req.user._id;
   console.log(userId);
   User.update({"_id":userId}, userData, function () {
-    res.redirect('cuenta', {baseUrl: config.baseUrl});
+    res.redirect('/cuenta', {baseUrl: config.baseUrl});
   });
 });
 
@@ -226,6 +226,6 @@ function ensureAuthenticated(req, res, next){
     return next();
   } else {
     //req.flash('error_msg','You are not logged in');
-    res.redirect('ingresar', {baseUrl: config.baseUrl});
+    res.redirect('/ingresar', {baseUrl: config.baseUrl});
   }
 }

@@ -24,7 +24,7 @@ module.exports = function (app) {
  URI: /publicar
  */
 
-router.get('publicar', ensureAuthenticated, function(req, res){
+router.get('/publicar', ensureAuthenticated, function(req, res){
   res.render('upload', {baseUrl: config.baseUrl});
 });
 
@@ -66,7 +66,7 @@ router.post("publicando", upload.single('video'), function(req,res){
  URI: /videos
  */
 
-router.get("videos",ensureAuthenticated,function(req, res){
+router.get("/videos",ensureAuthenticated,function(req, res){
   File.find({privateFile:"false"},function(err, documento){
     if(err){console.log(err);}
     res.render("display",{ videos : documento}, {baseUrl: config.baseUrl})
@@ -78,7 +78,7 @@ router.get("videos",ensureAuthenticated,function(req, res){
  URI: /misvideos
  */
 
-router.get('misvideos', ensureAuthenticated, function(req, res){
+router.get('/misvideos', ensureAuthenticated, function(req, res){
   File.find({username:req.user.username}, function(err, documento){
     if(err){console.log(err);}
     console.log(documento);
@@ -91,7 +91,7 @@ router.get('misvideos', ensureAuthenticated, function(req, res){
  URI: /editar/:id
  */
 
-router.get('editar/:id', ensureAuthenticated, function(req, res) {
+router.get('/editar/:id', ensureAuthenticated, function(req, res) {
   var id_video = req.params.id;
   File.findOne({"_id": id_video}, function (err, video) {
     res.render('edit', {video:video}, {baseUrl: config.baseUrl});
@@ -110,7 +110,7 @@ router.post('editar/:id', function(req, res){
   };
   console.log(videoData);
   File.update({"_id":req.params.id}, videoData, function(){
-    res.redirect("misvideos", {baseUrl: config.baseUrl})
+    res.redirect("/misvideos", {baseUrl: config.baseUrl})
   });
 });
 
@@ -133,6 +133,6 @@ function ensureAuthenticated(req, res, next){
     return next();
   } else {
     //req.flash('error_msg','You are not logged in');
-    res.redirect('ingresar', {baseUrl: config.baseUrl});
+    res.redirect('/ingresar', {baseUrl: config.baseUrl});
   }
 }
