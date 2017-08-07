@@ -135,3 +135,15 @@ function ensureAuthenticated(req, res, next){
     res.redirect('/ingresar');
   }
 }
+
+/* Servicio Web: Elimina la publicación de la Base de datos.
+ Método: POST
+ URI: /delete/:id
+ */
+router.post('/delete/:id',function (req, res) {
+  File.remove({"_id":req.params.id},function (err) {
+    if (err){console.log(err);}
+    res.redirect("/misvideos");
+  });
+});
+

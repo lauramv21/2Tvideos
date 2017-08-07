@@ -153,7 +153,12 @@ source: https://www.liquidweb.com/kb/how-to-install-nvm-node-version-manager-for
           Método: POST
           URI: /buscar
      */
-¡
+
+     /* Servicio Web: Elimina la publicación de la Base de datos.
+          Método: POST
+          URI: /delete/:id
+     */
+
 
 # 5. Implementación o Despliegue (DCA y PaaS):
 
