@@ -10,29 +10,27 @@ var methodOverride = require('method-override');
 var exphbs  = require('express-handlebars');
 var Handlebars = require('handlebars');
 
-
 module.exports = function(app, config) {
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
 
+
+  app.set('views', config.root + '/app/views');
+  app.set('view engine', 'handlebars');
+
   app.engine('handlebars', exphbs({
     layoutsDir: config.root + '/app/views/layouts/',
-    defaultLayout: 'main',
-    partialsDir: [config.root + '/app/views/partials/']
+    defaultLayout: 'main'
   }));
 
-  Handlebars.registerHelper
+  Handlebars.
   Handlebars.registerHelper('ifCond', function(v1, v2, options) {
     if(v1 === v2) {
       return options.fn(this);
     }
     return options.inverse(this);
   });
-
-
-  app.set('views', config.root + '/app/views');
-  app.set('view engine', 'handlebars');
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
@@ -79,3 +77,4 @@ module.exports = function(app, config) {
 
   return app;
 };
+
