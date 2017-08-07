@@ -113,7 +113,7 @@ passport.deserializeUser(function(id, done) {
  */
 
 router.post('/ingresando',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/ingresar',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/', failureRedirect:'{{baseUrl}}ingresar',failureFlash: true}),
   function(req, res) {
     res.redirect('/videos', {baseUrl: config.baseUrl});
   });
