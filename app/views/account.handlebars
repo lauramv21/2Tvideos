@@ -10,7 +10,7 @@
 
 </div>
 
-<form method="post" action="{{baseUrl}}actualizarDatos">
+<form method="post" action="/actualizarDatos">
     <div class="form-group">
         <label>Nombre</label>
         <input type="text" class="form-control" name="name" value="{{usuario.name}}">
@@ -25,7 +25,7 @@
 
 <hr>
 
-<form method="post" action="{{baseUrl}}cambiarClave">
+<form method="post" action="/cambiarClave">
     <div class="form-group">
         <h2>Cambio de contraseña</h2>
         <label>Contraseña anterior</label>
@@ -45,7 +45,7 @@
 
 <hr>
 
-<form method="post" action="{{baseUrl}}eliminarCuenta">
+<form method="post" action="/eliminarCuenta">
     <h2>Eliminar cuenta</h2>
     <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
 </form>
