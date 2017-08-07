@@ -4,6 +4,7 @@ var path = require('path'),
 
 var config = {
   development: {
+    baseUrl: "/2tvideos",
     root: rootPath,
     app: {
       name: '2Tvideos'
