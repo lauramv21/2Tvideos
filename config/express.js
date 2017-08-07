@@ -22,12 +22,14 @@ module.exports = function(app, config) {
     partialsDir: [config.root + '/app/views/partials/']
   }));
 
+  Handlebars.registerHelper
   Handlebars.registerHelper('ifCond', function(v1, v2, options) {
-    if(v1 == v2) {
+    if(v1 === v2) {
       return options.fn(this);
     }
     return options.inverse(this);
   });
+
 
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'handlebars');
