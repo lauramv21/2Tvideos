@@ -37,7 +37,7 @@ router.get('/ingresar', function(req, res){
  URI: /registrando
  */
 
-router.post('registrando', function(req, res){
+router.post('/registrando', function(req, res){
   var name = req.body.name;
   var lastname = req.body.lastname;
   var username = req.body.username;
@@ -112,7 +112,7 @@ passport.deserializeUser(function(id, done) {
  URI: /ingresando
  */
 
-router.post('ingresando',
+router.post('/ingresando',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/ingresar',failureFlash: true}),
   function(req, res) {
     res.redirect('/videos', {baseUrl: config.baseUrl});
@@ -190,7 +190,7 @@ router.post('/cambiarClave', function(req, res) {
  URI: /actualizarDatos
  */
 
-router.post('actualizarDatos', function (req, res) {
+router.post('/actualizarDatos', function (req, res) {
   var userData = {
     name: req.body.name,
     lastname: req.body.lastname
@@ -208,7 +208,7 @@ router.post('actualizarDatos', function (req, res) {
  */
 
 
-router.post('eliminarCuenta', function (req, res) {
+router.post('/eliminarCuenta', function (req, res) {
   var userId = req.user._id;
   var userName = req.user.username;
   User.remove({"_id":userId},function (err) {

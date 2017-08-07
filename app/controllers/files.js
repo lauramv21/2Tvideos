@@ -32,7 +32,7 @@ router.get('/publicar', ensureAuthenticated, function(req, res){
  Método: POST
  URI: /publicando
  */
-router.post("publicando", upload.single('video'), function(req,res){
+router.post("/publicando", upload.single('video'), function(req,res){
   var private = false;
   if(req.body.privateFile == 'on'){
     private = true;
@@ -98,7 +98,7 @@ router.get('/editar/:id', ensureAuthenticated, function(req, res) {
   });
 });
 
-router.post('editar/:id', function(req, res){
+router.post('/editar/:id', function(req, res){
   var privado = false;
   if(req.body.privateFile == 'on'){
     privado = true;
@@ -119,7 +119,7 @@ router.post('editar/:id', function(req, res){
  URI: /buscar
  */
 
-router.post('buscar', function(req, res) {
+router.post('/buscar', function(req, res) {
   File.find({username: req.body.buscar, privateFile: "false"}, function (err, documento) {
     if (err) {
       console.log(err);
