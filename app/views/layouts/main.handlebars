@@ -19,14 +19,14 @@
         <nav>
             <ul class="nav nav-pills pull-right">
               {{#if user}}
-                  <li role="presentation"><a href="{{baseUrl}}/videos">Contenido público</a></li>
-                  <li role="presentation"><a href="{{baseUrl}}/cuenta">Mi perfil</a></li>
-                  <li role="presentation"><a href="{{baseUrl}}/misvideos">Mis videos</a></li>
-                  <li role="presentation"><a href="{{baseUrl}}/publicar">Subir</a></li>
-                  <li role="presentation"><a href="{{baseUrl}}/salir">Cerrar sesión</a></li>
+                  <li role="presentation"><a href="{{baseUrl}}videos">Contenido público</a></li>
+                  <li role="presentation"><a href="{{baseUrl}}cuenta">Mi perfil</a></li>
+                  <li role="presentation"><a href="{{baseUrl}}misvideos">Mis videos</a></li>
+                  <li role="presentation"><a href="{{baseUrl}}publicar">Subir</a></li>
+                  <li role="presentation"><a href="{{baseUrl}}salir">Cerrar sesión</a></li>
               {{else}}
-                  <li role="presentation"><a href="/ingresar">Ingresar</a></li>
-                  <li role="presentation"><a href="/registro">Registrarse</a></li>
+                  <li role="presentation"><a href="{{baseUrl}}ingresar">Ingresar</a></li>
+                  <li role="presentation"><a href="{{baseUrl}}registro">Registrarse</a></li>
               {{/if}}
             </ul>
         </nav>

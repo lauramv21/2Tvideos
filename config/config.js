@@ -4,7 +4,7 @@ var path = require('path'),
 
 var config = {
   development: {
-    baseUrl: "/2tvideos",
+    baseUrl: "/2tvideos/",
     root: rootPath,
     app: {
       name: '2Tvideos'
@@ -14,7 +14,7 @@ var config = {
   },
 
   test: {
-    baseUrl: "/2tvideos",
+    baseUrl: "/2tvideos/",
     root: rootPath,
     app: {
       name: '2Tvideos'
@@ -24,7 +24,7 @@ var config = {
   },
 
   production: {
-    baseUrl: "/2tvideos",
+    baseUrl: "/2tvideos/",
     root: rootPath,
     app: {
       name: '2Tvideos'
