@@ -41,6 +41,7 @@ router.post("/publicando", upload.single('video'), function(req,res){
     username:req.user.username,
     title:req.body.title,
     description:req.body.description,
+    price:req.body.price,
     video:req.body.video,
     privateFile:private
   }
@@ -105,6 +106,7 @@ router.post('/editar/:id', function(req, res){
   var videoData = {
     title: req.body.titulo,
     description: req.body.description,
+    price: req.body.price,
     privateFile : privado
   };
   console.log(videoData);
