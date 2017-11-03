@@ -141,13 +141,29 @@ router.get('/cuenta', ensureAuthenticated, function (req, res) {
   });
 });
 
+router.get('/perfil/:username', ensureAuthenticated, function(req, res) {
+  var username = req.params.username;
+  console.log("USERNAME:" + username);
+  File.find({privateFile:"false"},function(err, documento){
+    if(err){console.log(err);}
+    res.render("contact",{ username: req.params.username, videos : documento})
+  });
+  /*
+  User.findOne({"username": username}, function (err, user) {
+    File.find({username: req.body.buscar, privateFile: "false"}, function (err, documento) {
+      res.render('contact', {usuario:user, videos:documento});
+    });
+  });
+  */
+});
+
 router.post('/cambiarClave', function(req, res) {
   var usuario = req.user.username;
   var clave = req.body.oldpassword;
   var nuevaClave = req.body.newpassword;
   var repetirClave = req.body.confirmPassword;
 
-  if (nuevaClave == repetirClave) {
+  if (nuevaClave === repetirClave) {
     var coinciden = true;
   }
   console.log(coinciden);
