@@ -7,7 +7,13 @@ var UserSchema = new Schema({
 	name: String,
 	lastname: String,
 	username:String,
-	password: String
+	password: String,
+  email: String,
+  phone: String,
+  city: String,
+  country: String,
+  rating: String,
+  voters: String
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

@@ -42,17 +42,22 @@ router.post('/registrando', function(req, res){
   var username = req.body.username;
   var password = req.body.password;
   var confirmPassword = req.body.password2;
-  console.log(name);
-  console.log(lastname);
-  console.log(username);
-  console.log(password);
-  console.log(confirmPassword);
+  var email = req.body.email;
+  var phone = req.body.phone;
+  var city = req.body.city;
+  var country = req.body.country;
 
   req.checkBody('name', 'Nombre es necesario').notEmpty();
   req.checkBody('lastname', 'Apellido es necesario').notEmpty();
   req.checkBody('username', 'Nombre de usuario es necesario').notEmpty();
-  req.checkBody('password', 'Contraseña es necsario').notEmpty();
+  req.checkBody('password', 'Contraseña es necesario').notEmpty();
+  req.checkBody('email', 'Correo electronico es necesario').notEmpty();
+  req.checkBody('phone', 'Celular es necesario').notEmpty();
+  req.checkBody('city', 'Ciudad es necesario').notEmpty();
+  req.checkBody('country', 'Pais es necesario').notEmpty();
   req.checkBody('confirmPassword', 'Las contraseñas no coinciden').equals(req.body.password);
+
+
 
   var errors = req.validationErrors();
 
@@ -64,6 +69,12 @@ router.post('/registrando', function(req, res){
       lastname: lastname,
       username: username,
       password: password,
+      email: email,
+      phone: phone,
+      city: city,
+      country: country,
+      rating: 5.0,
+      voters: 0
     });
 
     User.createUser(nuevoUsuario, function(req, res){

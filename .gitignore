@@ -4,3 +4,4 @@ public/components
 .sass-cache
 .idea/workspace.xml
 .idea/workspace.xml
+*.xml
