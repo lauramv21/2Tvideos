@@ -74,7 +74,7 @@ router.post('/registrando', function(req, res){
       city: city,
       country: country,
       rating: 5.0,
-      voters: 0
+      voters: 1
     });
 
     User.createUser(nuevoUsuario, function(req, res){
@@ -165,13 +165,44 @@ router.get('/perfil/:username', ensureAuthenticated, function(req, res) {
       });
     });
   });
-  /*
-  User.findOne({"username": username}, function (err, user) {
-    File.find({username: req.body.buscar, privateFile: "false"}, function (err, documento) {
-      res.render('contact', {usuario:user, videos:documento});
+});
+
+router.post('/rate/:username', function (req, res) {
+  var newVote = parseInt(req.body.rating);
+  console.log("STARS:" + newVote);
+  //Operacion rating
+  var viejoR = 0;
+  var viejoV = 0;
+  User.findOne({"username": req.params.username}, function (err, user) {
+    viejoR = parseFloat(user.rating);
+    viejoV = parseInt(user.voters);
+    console.log("VIEJO RATE: " + viejoR);
+    console.log("VIEJO VOTERS: " + viejoV);
+    var defVoters = viejoV +1;
+    var defRating = (((viejoR*viejoV)+(newVote))/defVoters).toFixed(2);
+    //Actualizar Rating
+    console.log("NUEVO RATE: " + defRating);
+    console.log("NUEVO VOTERS: " + defVoters);
+
+    var userData = {
+      name: user.name,
+      lastname: user.lastname,
+      username:user.username,
+      password: user.password,
+      email: user.email,
+      phone: user.phone,
+      city: user.city,
+      country: user.country,
+      rating: defRating,
+      voters: defVoters
+    };
+
+    User.update({"username":req.params.username}, userData, function(){
+      res.redirect('/perfil/'+req.params.username);
     });
+
   });
-  */
+
 });
 
 router.post('/cambiarClave', function(req, res) {
