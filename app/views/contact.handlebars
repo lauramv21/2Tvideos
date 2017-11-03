@@ -1,7 +1,15 @@
 <h1 class="page-header">{{usuario.username}}</h1>
-<h4>{{usuario.name}} {{usuario.lastname}}</h4>
+
 <h3 class="page-header"> Datos basicos</h3>
+<p><b>Nombre completo:</b> {{usuario.name}} {{usuario.lastname}}</p>
+<p><b>Correo electronico: </b>{{usuario.email}}</p>
+<p><b>Celular: </b>{{usuario.phone}}</p>
+<p><b>Ciudad: </b>{{usuario.city}}, {{usuario.country}}</p>
+
 <h3 class="page-header"> Reputación</h3>
+<p><b>Calificación: </b>{{usuario.rating}}</p>
+<p><b>Cantidad de articulos que ofrece: </b>{{nVideos}}</p>
+
 <h3 class="page-header"> Articulos recientes</h3>
 {{#each videos}}
   <div class="row">

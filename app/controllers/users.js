@@ -145,11 +145,13 @@ router.get('/perfil/:username', ensureAuthenticated, function(req, res) {
   var username = req.params.username;
   console.log("USERNAME:" + username);
   User.findOne({"username": username}, function (err, user) {
-    File.find({username: req.params.username, privateFile: "false"}, function (err, documento) {
-      if (err) {
-        console.log(err);
-      }
-      res.render('contact', {usuario: user, videos: documento});
+    File.find({username: req.params.username, privateFile: "false"}).count(function (err, cantidad) {
+      File.find({username: req.params.username, privateFile: "false"}, function (err, documento) {
+        if (err) {
+          console.log(err);
+        }
+        res.render('contact', {usuario: user, videos: documento, nVideos: cantidad});
+      });
     });
   });
   /*
