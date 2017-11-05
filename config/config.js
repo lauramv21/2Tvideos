@@ -1,6 +1,6 @@
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
-    env = process.env.NODE_ENV || 'development';
+    env = process.env.NODE_ENV || 'test';
 
 var config = {
   development: {
@@ -30,7 +30,7 @@ var config = {
       name: '2Tvideos'
     },
     port: process.env.PORT || 3001,
-    db: 'mongodb://lauramv21:laura.21@ds135963.mlab.com:35963/2tvideos'
+    db: 'mongodb://lauramv21:laura.21@ds249575.mlab.com:49575/vos'
   }
 };
 

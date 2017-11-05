@@ -1609,6 +1609,18 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+
+.container-img {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  background: orange;
+}
+
 .row {
   margin-right: -15px;
   margin-left: -15px;
@@ -6514,6 +6526,7 @@ button.close {
 .modal-footer:after {
   clear: both;
 }
+
 .center-block {
   display: block;
   margin-right: auto;
@@ -6757,4 +6770,3 @@ button.close {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
